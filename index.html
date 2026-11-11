@@ -1,50 +1,214 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light">
-<meta name="referrer" content="no-referrer">
-<meta name="description" content="License Plate Hunt: a road trip game. Spot plates from the US, Canada, Mexico and China and earn rewards.">
-<title>License Plate Hunt</title>
-<style>
-  body { margin: 0 auto; max-width: 42rem; padding: 2.5rem 1.25rem 3rem; background: #F2F2F7; color: #1C1C1E; font: 1rem/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Noto Sans CJK SC", sans-serif; }
-  .icon { display: block; width: 96px; height: 96px; border-radius: 22px; margin: 0 0 1.25rem; }
-  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 .5rem; }
-  .tagline { color: #6C6C70; font-size: 1.1rem; margin: 0 0 1.5rem; }
-  p { margin: 0 0 .75rem; }
-  .card { background: #FFFFFF; border-radius: 14px; margin: 1.5rem 0; overflow: hidden; }
-  .card a { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.1rem; color: #1C1C1E; text-decoration: none; font-weight: 600; }
-  .card a + a { border-top: 1px solid #E5E5EA; }
-  .card a span { display: block; color: #6C6C70; font-weight: 400; font-size: .9rem; }
-  .card a::after { content: "›"; color: #C7C7CC; font-size: 1.4rem; margin-left: .75rem; }
-  .primary { display: block; text-align: center; background: #007AFF; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 1.1rem; padding: .95rem; border-radius: 14px; }
-  .foot { color: #6C6C70; font-size: .9rem; margin-top: 2rem; }
-  .foot a { color: #007AFF; }
-</style>
+<script>
+// Picks the download block for this device: iPhone, Android, other touch devices (iPad: the iOS
+// app is iPhone-only, so the web version comes first) or desktop. With JS off, desktop shows.
+(function (d, n) {
+  var u = n.userAgent, data = n.userAgentData, c = 'd-desktop';
+  if (/iPhone|iPod/.test(u)) c = 'd-iphone';
+  else if (/Android/i.test(u) || (data && data.platform === 'Android')) c = 'd-android';
+  else if (/iPad/.test(u) || (/Macintosh/.test(u) && n.maxTouchPoints > 1) || (data && data.mobile)) c = 'd-other';
+  d.className = d.className.replace('no-js', 'js ' + c);
+})(document.documentElement, navigator);
+</script>
+<title>License Plate Game App for Road Trips | License Plate Hunt</title>
+<meta name="description" content="Spot license plates from the US, Canada, Mexico and China, and let the app keep score. The road trip game for iPhone and Android — free to play.">
+<link rel="canonical" href="https://yefengmiao-cmyk.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yefengmiao-cmyk.github.io/">
+<meta property="og:site_name" content="License Plate Hunt">
+<meta property="og:title" content="License Plate Hunt — The license plate game for road trips">
+<meta property="og:description" content="Spot plates from 126 states, provinces and regions. Free on iPhone and in your browser.">
+<meta property="og:image" content="https://yefengmiao-cmyk.github.io/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="License Plate Hunt: the license plate game for road trips">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F2F2F7">
+<link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="preload" as="image" href="/assets/trip.webp" fetchpriority="high">
+<style>:root{--bg:#F2F2F7;--surface:#FFFFFF;--label:#000000;--secondary:#6C6C70;--separator:#E5E5EA;--tint:#007AFF;--link:#0066D6;--link-hover:#0052AB;--chevron:#C7C7CC;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Inter,system-ui,sans-serif}*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--label);font:16px/1.5 var(--font);-webkit-font-smoothing:antialiased}h1,h2,h3,p,ol{margin:0}a{color:var(--link)}a:hover{color:var(--link-hover)}img{display:block;max-width:100%;height:auto}.wrap{max-width:1080px;margin:0 auto;padding-left:24px;padding-right:24px}.secondary{color:var(--secondary)}.white{background:var(--surface)}.label{font-size:13px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--secondary)}h1{font-size:clamp(44px,6vw,64px);font-weight:700;line-height:1.05;letter-spacing:-1.2px}h2{font-size:clamp(32px,4vw,40px);font-weight:700;line-height:1.15;letter-spacing:-0.6px}.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;z-index:1;background:var(--surface);padding:8px 12px;border-radius:8px}.nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;padding-bottom:16px}.wordmark{font-size:20px;font-weight:700;letter-spacing:-0.3px;color:var(--label);text-decoration:none}.wordmark:hover{color:var(--label)}.nav-links{display:flex;align-items:center;gap:24px}.nav-links a{display:inline-flex;align-items:center;min-height:44px;color:var(--label);text-decoration:none}.nav-links .btn-small{padding:0 18px;border-radius:12px;background:var(--link);color:#FFFFFF;font-weight:600}.nav-links .btn-small:hover{background:var(--link-hover);color:#FFFFFF}.btn{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 20px;border-radius:16px;background:var(--tint);color:#FFFFFF;text-decoration:none;font-size:20px;font-weight:700;border:0;font-family:inherit;cursor:pointer}.btn:hover{background:#0070EB;color:#FFFFFF}.btn-secondary{background:var(--surface);color:var(--link)}.btn-secondary:hover{background:var(--separator);color:var(--link-hover)}.white .btn-secondary{background:var(--bg)}.hero{display:flex;flex-wrap:wrap;align-items:center;gap:64px;padding-top:48px;padding-bottom:88px}.hero-text{flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:20px}.subhead{font-size:21px;line-height:1.45;color:var(--secondary);max-width:520px}.hero-shot{flex:0 1 300px;min-width:0;display:flex;justify-content:center}.shot{width:300px;border-radius:40px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 16px 40px rgba(0,0,0,.10)}.dl{margin-top:12px}.dl-iphone,.dl-android,.dl-other{display:none}.d-iphone .dl-desktop,.d-android .dl-desktop,.d-other .dl-desktop{display:none}.d-iphone .dl-iphone,.d-android .dl-android,.d-other .dl-other{display:flex}.js .nojs-only{display:none}.dl-phone{flex-direction:column;gap:12px;max-width:420px}.dl-phone .center{text-align:center}.dl-phone a.center{display:flex;align-items:center;justify-content:center;min-height:44px;font-size:16px}.hint{font-size:15px;color:var(--secondary)}.card{background:var(--surface);border-radius:20px;overflow:hidden}.dl-card{max-width:480px}.dl-row{display:flex;align-items:center;gap:16px;padding:16px 20px}.dl-row + .dl-row{position:relative}.dl-row + .dl-row::before{content:"";position:absolute;top:0;left:124px;right:0;border-top:1px solid var(--separator)}.dl-row .qr{flex:none;width:88px;height:88px}.row-title{font-size:17px;font-weight:600}.row-sub{font-size:15px;color:var(--secondary)}.qr{border-radius:12px;background:#FFFFFF}.qr-soon{display:flex;align-items:center;justify-content:center;border:1px dashed var(--chevron);background:var(--bg);font-size:13px;color:var(--secondary)}.nojs-only{margin-top:12px;font-size:16px}.section{padding-top:88px;padding-bottom:88px;display:flex;flex-direction:column;gap:40px}.benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px 48px}.benefits h3{font-size:20px;font-weight:600;margin-bottom:6px}.benefits p{color:var(--secondary)}.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;counter-reset:step}.steps li{display:flex;gap:16px;padding:20px;background:var(--surface);border-radius:20px;counter-increment:step}.steps li::before{content:counter(step);flex:none;width:32px;height:32px;border-radius:999px;background:var(--tint);color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-weight:700}.steps .t{font-size:17px;font-weight:600}.steps .s{font-size:15px;line-height:1.45;color:var(--secondary);margin-top:4px}.how{gap:32px}.tagline{font-size:15px;color:var(--secondary)}.faq{max-width:760px;padding-top:0;gap:20px}.faq details + details{border-top:1px solid var(--separator)}.faq summary{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:56px;padding:12px 20px;font-size:17px;font-weight:600;cursor:pointer;list-style:none}.faq summary::-webkit-details-marker{display:none}.faq .chev{flex:none;transition:transform .2s}.faq details[open] .chev{transform:rotate(90deg)}.faq details p{padding:0 20px 18px;font-size:16px;line-height:1.55;color:var(--secondary)}.cta{padding-top:80px;padding-bottom:80px;align-items:center;text-align:center;gap:24px}.cta h2{font-size:clamp(32px,4vw,44px);letter-spacing:-0.8px}.cta .lead{font-size:19px;color:var(--secondary)}.cta .dl{margin-top:0}.tiles{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}.tile{width:220px;display:flex;flex-direction:column;align-items:center;gap:10px;padding:24px;background:var(--bg);border-radius:20px}.tile .qr{width:140px;height:140px}.tile .row-sub{font-size:14px}.cta .dl-phone{width:100%}.footer{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-top:24px;padding-bottom:24px;font-size:14px;color:var(--secondary)}.footer nav{display:flex;flex-wrap:wrap;gap:4px 20px}.footer a{display:inline-flex;align-items:center;min-height:44px}@media (max-width:600px){.nav{flex-wrap:nowrap}.nav-links{gap:16px}.nav-links .btn-small{padding:0 14px}.hero{gap:40px;padding-top:24px;padding-bottom:64px}.section{padding-top:64px;padding-bottom:64px}.faq{padding-top:0}}@media (max-width:420px){.wordmark{font-size:18px}}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "License Plate Hunt",
+      "url": "https://yefengmiao-cmyk.github.io/"
+    },
+    {
+      "@type": "MobileApplication",
+      "name": "License Plate Hunt",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "iOS, Web",
+      "offers": { "@type": "Offer", "price": 0, "priceCurrency": "USD" },
+      "url": "https://yefengmiao-cmyk.github.io/",
+            "screenshot": "https://yefengmiao-cmyk.github.io/assets/trip.webp"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How do you play the license plate game?", "acceptedAnswer": { "@type": "Answer", "text": "Watch for license plates from other states, provinces or countries. In License Plate Hunt, start a trip, tap Spot a Plate! each time you see a new one, and end the trip when you arrive. The app keeps the list and adds up the rewards." } },
+        { "@type": "Question", "name": "How do rewards work?", "acceptedAnswer": { "@type": "Answer", "text": "Pick a template. Proximity to Home pays more for plates that traveled farther from your home state. Flat Rate pays the same for every plate. Show rewards as money, points, stars or something custom." } },
+        { "@type": "Question", "name": "Is License Plate Hunt free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The iPhone app is free to download and supported by ads. The browser version for Android and other devices is free with no ads." } },
+        { "@type": "Question", "name": "Is there an Android version?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. It runs in your browser, so there is nothing to download from a store. Open the link in Chrome, then choose Add to Home screen to use it like an app." } },
+        { "@type": "Question", "name": "Do I need an account?", "acceptedAnswer": { "@type": "Answer", "text": "No. There is no sign-up. Your trips and history are stored on your phone, not in the cloud." } },
+        { "@type": "Question", "name": "Is there a printable license plate checklist?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Print the free checklist with all 50 states and Canada's provinces and territories. No email needed." } }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
-<svg class="icon" viewBox="0 0 512 512" role="img" aria-label="License Plate Hunt icon">
-  <rect width="512" height="512" fill="#007AFF"/>
-  <rect x="96" y="166" width="320" height="180" rx="26" fill="#FFFFFF"/>
-  <rect x="110" y="180" width="292" height="152" rx="16" fill="none" stroke="#007AFF" stroke-width="7"/>
-  <circle cx="136" cy="202" r="7" fill="#007AFF"/><circle cx="376" cy="202" r="7" fill="#007AFF"/>
-  <circle cx="136" cy="310" r="7" fill="#007AFF"/><circle cx="376" cy="310" r="7" fill="#007AFF"/>
-  <text x="256" y="289" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="800" font-size="84" letter-spacing="1" fill="#1C1C1E">HUNT</text>
-</svg>
+<a class="skip" href="#main">Skip to content</a>
+<header class="wrap nav">
+  <a class="wordmark" href="/">License Plate Hunt</a>
+  <nav class="nav-links" aria-label="Main">
+    <a href="#faq">FAQ</a>
+    <a class="btn-small" href="#get">Get the app</a>
+  </nav>
+</header>
 
-<h1>License Plate Hunt</h1>
-<p class="tagline">A road trip game. Spot plates from the US, Canada, Mexico &amp; China!</p>
+<main id="main">
+<section class="wrap hero" aria-labelledby="title">
+  <div class="hero-text">
+    <h1 id="title">The license plate game for road trips</h1>
+    <p class="subhead">Turn every drive into a game. Spot plates from the US, Canada, Mexico &amp; China, and let the app keep score.</p>
 
-<p>Start a trip, tap each plate you spot, and watch the rewards add up. Plates from farther away can be worth more. When you end the trip, your earnings are saved to History. It works offline, in English and Chinese, and keeps your trips on your device.</p>
+    <!-- Download block: desktop / unknown (also the no-JS fallback) -->
+    <div class="dl dl-desktop">
+      <div class="card dl-card">
+        <div class="dl-row">
+                    <div class="qr qr-soon" aria-hidden="true">Soon</div>
+          <div>
+            <p class="row-title">iPhone</p>
+            <p class="row-sub">Coming soon to the App Store</p>
+          </div>
+        </div>
+        <div class="dl-row">
+          <img class="qr" src="/assets/qr-play.svg" width="88" height="88" alt="QR code to play License Plate Hunt in your browser">
+          <div>
+            <p class="row-title">Android &amp; other devices</p>
+            <p class="row-sub">Scan to play free in your browser</p>
+          </div>
+        </div>
+      </div>
+      <p class="nojs-only"><a href="/play/">Play free in your browser</a></p>
+    </div>
+    <!-- iPhone -->
+    <div class="dl dl-phone dl-iphone">
+            <a class="btn" href="/play/">Play free in your browser</a>
+      <p class="hint center">Coming soon to iPhone. Until then, tap Share, then Add to Home Screen.</p>
+    </div>
+    <!-- Android -->
+    <div class="dl dl-phone dl-android">
+      <a class="btn" href="/play/">Play free in your browser</a>
+      <p class="hint center">No store needed. Tap ⋮ then Add to Home screen.</p>
+    </div>
+    <!-- iPad and other touch devices: the web version first -->
+    <div class="dl dl-phone dl-other">
+      <a class="btn" href="/play/">Play free in your browser</a>
+      <p class="hint center">No store needed. Tap Share, then Add to Home Screen.</p>
+    </div>
+  </div>
+  <div class="hero-shot">
+    <img class="shot" src="/assets/trip.webp" width="300" height="652" fetchpriority="high" alt="License Plate Hunt trip screen showing spotted plates and rewards">
+  </div>
+</section>
 
-<p style="margin-top:1.5rem"><a class="primary" href="https://yefengmiao-cmyk.github.io/license-plate-hunt/">Play the web version</a></p>
+<section class="white" aria-labelledby="benefits">
+  <div class="wrap section">
+    <h2 id="benefits" style="max-width: 640px">A better way to play the classic road trip game</h2>
+    <div class="benefits">
+      <div><h3>No more arguing over the score</h3><p>Tap Spot a Plate! and the app logs it and adds it up. No paper, no pens, no recounts.</p></div>
+      <div><h3>Rewards that make it worth it</h3><p>Rare plates from far away pay more, or set a flat rate. Count it in money, points or stars.</p></div>
+      <div><h3>126 places to find</h3><p>Every US state, plus provinces and regions in Canada, Mexico and China.</p></div>
+      <div><h3>Every trip remembered</h3><p>Trips are saved to History, so you can look back at what you spotted on every drive.</p></div>
+      <div><h3>Start in seconds</h3><p>No account, no sign-up. Your trips stay on your phone.</p></div>
+      <div><h3>Free on any phone</h3><p>Get the iPhone app, or play in the browser on Android with no ads.</p></div>
+    </div>
+  </div>
+</section>
 
-<div class="card">
-  <a href="https://yefengmiao-cmyk.github.io/license-plate-hunt/support.html"><div>Support<span>FAQ and contact</span></div></a>
-  <a href="https://yefengmiao-cmyk.github.io/license-plate-hunt/privacy.html"><div>Privacy Policy<span>What the app does with data</span></div></a>
-</div>
+<section class="wrap section how" aria-labelledby="how">
+  <h2 id="how">How to play the license plate game</h2>
+  <ol class="steps">
+    <li><div><p class="t">Start a new trip</p><p class="s">Before you head out.</p></div></li>
+    <li><div><p class="t">Spot a plate</p><p class="s">See one from somewhere new? Tap to log it.</p></div></li>
+    <li><div><p class="t">End the trip</p><p class="s">See your total. It's saved to History.</p></div></li>
+  </ol>
+  <p class="tagline">Passengers spot, drivers drive.</p>
+</section>
 
-<p class="foot">Questions: <a href="mailto:roadtripapp2026@gmail.com">roadtripapp2026@gmail.com</a></p>
+<section id="faq" class="wrap section faq" aria-labelledby="faq-title">
+  <h2 id="faq-title">License plate game FAQ</h2>
+  <div class="card" data-faq>
+    <details><summary>How do you play the license plate game?<svg class="chev" aria-hidden="true" width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="#C7C7CC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l6 6-6 6"/></svg></summary>
+      <p>Watch for license plates from other states, provinces or countries. In License Plate Hunt, start a trip, tap Spot a Plate! each time you see a new one, and end the trip when you arrive. The app keeps the list and adds up the rewards.</p></details>
+    <details><summary>How do rewards work?<svg class="chev" aria-hidden="true" width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="#C7C7CC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l6 6-6 6"/></svg></summary>
+      <p>Pick a template. Proximity to Home pays more for plates that traveled farther from your home state. Flat Rate pays the same for every plate. Show rewards as money, points, stars or something custom.</p></details>
+    <details><summary>Is License Plate Hunt free?<svg class="chev" aria-hidden="true" width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="#C7C7CC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l6 6-6 6"/></svg></summary>
+      <p>Yes. The iPhone app is free to download and supported by ads. The browser version for Android and other devices is free with no ads.</p></details>
+    <details><summary>Is there an Android version?<svg class="chev" aria-hidden="true" width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="#C7C7CC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l6 6-6 6"/></svg></summary>
+      <p>Yes. It runs in your browser, so there is nothing to download from a store. Open the link in Chrome, then choose Add to Home screen to use it like an app.</p></details>
+    <details><summary>Do I need an account?<svg class="chev" aria-hidden="true" width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="#C7C7CC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l6 6-6 6"/></svg></summary>
+      <p>No. There is no sign-up. Your trips and history are stored on your phone, not in the cloud.</p></details>
+    <details><summary>Is there a printable license plate checklist?<svg class="chev" aria-hidden="true" width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="#C7C7CC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l6 6-6 6"/></svg></summary>
+      <p>Yes. <a href="/printable/">Print the free checklist</a> with all 50 states and Canada's provinces and territories. No email needed.</p></details>
+  </div>
+</section>
+
+<section id="get" class="white" aria-labelledby="get-title">
+  <div class="wrap section cta">
+    <h2 id="get-title">Ready for your next road trip?</h2>
+    <p class="lead">Free on iPhone. Free in your browser everywhere else.</p>
+    <!-- Desktop / unknown (also the no-JS fallback) -->
+    <div class="dl dl-desktop">
+      <div class="tiles">
+        <div class="tile">
+                    <div class="qr qr-soon" aria-hidden="true">Soon</div>
+          <p class="row-title">iPhone</p>
+          <p class="row-sub">Coming soon</p>
+        </div>
+        <div class="tile">
+          <img class="qr" src="/assets/qr-play.svg" width="140" height="140" loading="lazy" alt="QR code to play License Plate Hunt in your browser">
+          <p class="row-title">Android &amp; others</p>
+          <p class="row-sub">Play in your browser</p>
+        </div>
+      </div>
+      <p class="nojs-only"><a href="/play/">Play free in your browser</a></p>
+    </div>
+    <!-- iPhone -->
+    <div class="dl dl-phone dl-iphone">
+            <a class="btn" href="/play/">Play free in your browser</a>
+      <p class="hint center">Coming soon to iPhone.</p>
+    </div>
+    <!-- Android, iPad and other touch devices -->
+    <div class="dl dl-phone dl-android">
+      <a class="btn" href="/play/">Play free in your browser</a>
+      <p class="hint center">No store needed. Tap ⋮ then Add to Home screen.</p>
+    </div>
+    <div class="dl dl-phone dl-other">
+      <a class="btn" href="/play/">Play free in your browser</a>
+      <p class="hint center">No store needed. Tap Share, then Add to Home Screen.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap footer">
+  <p>© 2026 License Plate Hunt</p>
+  <nav aria-label="Footer">
+    <a href="/printable/">Printable checklist</a>
+    <a href="/license-plate-hunt/privacy.html">Privacy policy</a>
+    <a href="/license-plate-hunt/support.html">Support</a>
+  </nav>
+</footer>
 </body>
 </html>

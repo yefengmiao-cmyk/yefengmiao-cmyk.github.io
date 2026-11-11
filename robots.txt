@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /ios/
+Disallow: /play/
+
+Sitemap: https://yefengmiao-cmyk.github.io/sitemap.xml
